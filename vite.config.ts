@@ -1,13 +1,13 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
 import { VitePWA } from "vite-plugin-pwa"
-import fs from "fs"
+// import fs from "fs"
 
 export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
+      // registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
         name: "Vite PWA Project",
@@ -39,10 +39,10 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+        globPatterns: ["**/*"],
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/your-api.com\/.*$/, // API nào cần cache
+            urlPattern: /^https:\/\/your-api.com\/.*$/, // Thay bằng API bạn cần cache nếu có
             handler: "NetworkFirst",
             options: {
               cacheName: "api-cache",
@@ -56,11 +56,11 @@ export default defineConfig({
     }),
   ],
   server: {
-    https: {
-      key: fs.readFileSync("./localhost-key.pem"),
-      cert: fs.readFileSync("./localhost.pem"),
-    },
-    host: "192.168.1.10",
-    port: 5173,
+    // https: {
+    //   key: fs.readFileSync("./localhost-key.pem"),
+    //   cert: fs.readFileSync("./localhost.pem"),
+    // },
+    host: true,
+    allowedHosts: ["3c14-113-166-93-119.ngrok-free.app"],
   },
 })

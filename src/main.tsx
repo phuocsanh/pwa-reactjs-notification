@@ -15,6 +15,22 @@ const updateSW = registerSW({
   },
 })
 
+// const updatePromptShown =
+//   localStorage.getItem("updatePromptShown") === "true" ? true : false
+
+// const updateSW = registerSW({
+//   onNeedRefresh() {
+//     if (!updatePromptShown) {
+//       if (confirm("Có bản cập nhật mới, bạn có muốn tải lại?")) {
+//         updateSW(true)
+//       }
+//       localStorage.setItem("updatePromptShown", "true")
+//     }
+//   },
+//   onOfflineReady() {
+//     console.log("PWA đã sẵn sàng để sử dụng offline!")
+//   },
+// })
 // Đăng ký Firebase service worker
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker

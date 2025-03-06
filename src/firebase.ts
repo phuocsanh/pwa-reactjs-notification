@@ -33,4 +33,9 @@ export const requestNotificationPermission = async () => {
 // Lắng nghe tin nhắn khi app đang mở
 onMessage(messaging, (payload) => {
   console.log("Thông báo nhận được:", payload)
+  if (Notification.permission === "granted" && payload.data) {
+    const { title, body, icon } = payload.data
+    // Tự tạo thông báo với nội dung bạn muốn
+    new Notification(title, { body, icon })
+  }
 })

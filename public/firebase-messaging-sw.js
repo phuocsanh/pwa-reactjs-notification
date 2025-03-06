@@ -18,13 +18,12 @@ firebase.initializeApp({
 const messaging = firebase.messaging()
 
 messaging.onBackgroundMessage((payload) => {
-  console.log(
-    "[firebase-messaging-sw.js] Received background message ",
-    payload
-  )
-
-  self.registration.showNotification(payload.notification.title, {
-    body: payload.notification.body,
-    icon: "/pwa-192x192.png",
-  })
+  console.log("Background message:", payload)
+  if (payload.data) {
+    const { title, body, icon } = payload.data
+    self.registration.showNotification(title, {
+      body,
+      icon,
+    })
+  }
 })
